@@ -18,8 +18,6 @@ session_start();
     <!-- Extra CSS -->
     <link rel="stylesheet" href="yahtzee.css" />
 
-    <script type="text/javascript" src="yahtzee.js"></script>
-
     <title>Yahtzee</title>
 </head>
 

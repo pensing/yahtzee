@@ -1,6 +1,8 @@
 <?php
 // Start the session
 session_start();
+
+require_once("functions.php");
 ?>
 
 <!doctype html>
@@ -18,8 +20,6 @@ session_start();
     <!-- Extra CSS -->
     <link rel="stylesheet" href="yahtzee.css" />
 
-    <script type="text/javascript" src="yahtzee.js"></script>
-
     <title>Yahtzee</title>
 </head>
 
@@ -30,11 +30,29 @@ session_start();
 
         <h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2>
 
+        <div class="container">
+        <div class="row">
+
         <?php
             for ($i=1;$i<=$_SESSION["aantalspelers"];$i++) {
-            echo 'speler '.$i.' = '.$_POST["speler".$i].'<br/>';
+            //echo 'speler '.$i.' = '.$_POST["speler".$i].'<br/>';
+            echo '
+            <div class="col-sm">
+            <div class="card" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">'.
+    $_POST["speler".$i].'</h5>'. printTable($i) . '
+    <a href="#" class="card-link">Bereken deel 1</a>
+    <a href="#" class="card-link">Bereken deel 2</a>
+  </div>
+</div>
+            </div>';      
+
             }
         ?>
+
+        </div>
+        </div>
     
     </div>
 
