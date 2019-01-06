@@ -32,3 +32,37 @@ a {
     margin: 0 auto;
     height: 100px;
 }
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.dobbel {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    background-color: white;
+    font-size: 32px;
+    font-weight: bold;
+    float: left;
+    border-radius: 10px;
+}
+
+.dot {
+    width: 25px;
+    height: 25px;
+    margin: 4px;
+    background-color: black;
+    float: left;
+    border-radius: 50%;
+}
+
+.nodot {
+    width: 25px;
+    height: 25px;
+    margin: 4px;
+    background-color: white;
+    float: left;
+    border-radius: 50%;
+}
