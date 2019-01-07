@@ -33,6 +33,10 @@ require_once("functions.php");
         <div class="container">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="row">
+
+
+
+        
         <?php
             for ($i=1;$i<=$_SESSION["aantalspelers"];$i++) {
             //echo 'speler '.$i.' = '.$_POST["speler".$i].'<br/>';

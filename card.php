@@ -1,8 +1,16 @@
 <?php
 // Start the session
 session_start();
-
 require_once("functions.php");
+
+if (isset($_SESSION["running"])) {
+    //$aantalEen = $_SESSION['player']['aantalEen'];
+    //$aantalTwee = $_SESSION['player']['aantalTwee'];
+} else {
+    //$_SESSION["running"] = true;
+    //$_SESSION['player']=array();
+}
+
 ?>
 
 <!doctype html>
@@ -28,71 +36,37 @@ require_once("functions.php");
     <!-- Kop/header -->
     <div class="container-fluid align-middle" style="text-align:center;background-color:transparent;height:100vh;">
 
-        <h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2>
-
-        <div class="container">
-
-        </div>
+        <!--h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2-->
 
         <div class="container">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <div class="row" style="margin-top: 150px;">
-
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            if (!$_SESSION["eindebeurt"]) {
-            $worp = $_SESSION["worp"];
-
-            $ds1 = rand(1,6);
-            $ds2 = rand(1,6);
-            $ds3 = rand(1,6);
-            $ds4 = rand(1,6);
-            $ds5 = rand(1,6);
-
-            echo "<div>Dit is worp ".$worp."</div>";
-            if ($worp < 3) {$worp += 1; $_SESSION["worp"] = $worp;
-            } else {
-                echo "<div>Je hebt 3 keer gegooid!</div>";
-                $eindebeurt = true;
-                $_SESSION["eindebeurt"] = $eindebeurt;
-            }
-
-            } else {echo "<div>Je hebt al 3 keer gegooid!</div>";}
-        ?>
-
-        <div style="width:100%; margin: 0 auto;">
-            <div class="dobbel"><?php echo printDobbel($ds1); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds2); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds3); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds4); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds5); ?></div>
-        </div>
-
-        <?php
+            $getSession = true;
         } else {
-            $worp = 1;
-            $_SESSION["worp"] = $worp;
-            $eindebeurt = false;
-            $_SESSION["eindebeurt"] = $eindebeurt;
-            echo "<div>Doe je eerste worp</div>";
-        ?>
-
-        <div style="width:100%; margin: 0 auto;">
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-        </div>
-
-        <?php
+            $getSession = false;
         }
-        ?>
+
+        ?>  
+
+        <div class="row" style="margin-top: 20px;">
+        <div class="col-sm">
+            <div class="card" style="width: 100%;">
+                <div class="card-body"><?php echo printTable(1, $getSession); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 100%;">
+                <div class="card-body"><?php echo printTable2(1,$getSession); ?>
+                </div>
+            </div>
+        </div>
+        </div>
 
         </div>
-        <input type="submit" value="Roll the dice">
+        <input type="submit" value="Verwerk" style="margin-top: 200px;">
         </form>
         </div>
     

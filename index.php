@@ -1,6 +1,7 @@
 <?php
 // Start the session
 session_start();
+
 ?>
 
 <!doctype html>
@@ -45,13 +46,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   echo "</div></form>";
 
 } else {
+    // remove all session variables
+    session_unset(); 
+    // destroy the session 
+    session_destroy(); 
+
+    $_SESSION["running"] = true;
+    $_SESSION['player']=array();
+
 ?>
 
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="form-group">
                 <label for="aantalspelers" class="labelaantal">Aantal spelers</label>
                 <input type="number" min="1" max="4" id="aantal" class="form-control mb-5 inputaantal" name="aantalspelers" style="">
-                <button class="btn btn-primary" type="button">OK</button>
+                <input type="submit" class="btn btn-primary" type="button" value="OK">
             </div>
         </form>
 
