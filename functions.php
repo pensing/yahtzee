@@ -2,49 +2,68 @@
 session_start();
 
 function printInput($speler) {
-    $content = '<label>Naam speler '.$speler.': </label><input type="text" name="speler'.$speler.'"><br/>';  
+    $content = '<label class="mr-2">Speler '.$speler.': </label><input type="text" name="speler'.$speler.'"><br/>';  
     return $content;
   }
 
- function printDobbel($dots) {
-    $r1 = '<div class="nodot"></div><div class="nodot"></div><div class="nodot"></div>';
-    $r2 = '<div class="nodot"></div><div class="nodot"></div><div class="nodot"></div>';
-    $r3 = '<div class="nodot"></div><div class="nodot"></div><div class="nodot"></div>';
+function resetDobbelen() {
+    //alert("Dobbelen gereset");
+    if ($_GET['reset']==true) {
+    //echo '<script>document.getElementById("status").innerHTML = "Dobbelen gereset"</script>';
+    $_SESSION["worp"] = 1;
+    $_SESSION["eindebeurt"] = false;
+    }
+}
+
+function printDotrow($class1, $class2, $class3) {
+    $row = '<div class="'.$class1.'"></div><div class="'.$class2.'"></div><div class="'.$class3.'"></div>';
+    return $row;
+}
+
+function printDobbel($dots) {
+    $r1 = printDotrow("nodot","nodot","nodot");
+    $r2 = printDotrow("nodot","nodot","nodot");
+    $r3 = printDotrow("nodot","nodot","nodot");
 
     switch ($dots) {
         case 1:
-            $r2 = '<div class="nodot"></div><div class="dot"></div><div class="nodot"></div>';
-            break;
+            $r2 = printDotrow("nodot","dot","nodot");;
+        break;
         case 2:
-            $r1 = '<div class="nodot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r3 = '<div class="dot"></div><div class="nodot"></div><div class="nodot"></div>';
+            $r1 = printDotrow("nodot","nodot","dot");
+            $r3 = printDotrow("dot","nodot","nodot");
             break;
         case 3:
-            $r1 = '<div class="nodot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r2 = '<div class="nodot"></div><div class="dot"></div><div class="nodot"></div>';
-            $r3 = '<div class="dot"></div><div class="nodot"></div><div class="nodot"></div>';
+            $r1 = printDotrow("nodot","nodot","dot");
+            $r2 = printDotrow("nodot","dot","nodot");
+            $r3 = printDotrow("dot","nodot","nodot");
         break;
         case 4:
-            $r1 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r3 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
+            $r1 = printDotrow("dot","nodot","dot");
+            $r3 = printDotrow("dot","nodot","dot");
         break;
         case 5:
-            $r1 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r2 = '<div class="nodot"></div><div class="dot"></div><div class="nodot"></div>';
-            $r3 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
+            $r1 = printDotrow("dot","nodot","dot");
+            $r2 = printDotrow("nodot","dot","nodot");
+            $r3 = printDotrow("dot","nodot","dot");
         break;
         case 6:
-            $r1 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r2 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
-            $r3 = '<div class="dot"></div><div class="nodot"></div><div class="dot"></div>';
+            $r1 = printDotrow("dot","nodot","dot");
+            $r2 = printDotrow("dot","nodot","dot");
+            $r3 = printDotrow("dot","nodot","dot");
         break;
         default:
     }
 
+    $checked = 'checked';
+
     $content = '
+    <div class="dobbel shadow">
     <div class="row">' . $r1 . '</div>
     <div class="row">' . $r2 . '</div>
     <div class="row">' . $r3 . '</div>
+    </div>
+    <div class="" style="padding: 10px;"><input type="checkbox" ' . $checked . '></div>
     ';  
     return $content;
   }

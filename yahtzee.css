@@ -38,6 +38,11 @@ a {
     margin-left: 0px;
 }
 
+.dobbelcontainer {
+    width: 110px;
+    float: left;
+}
+
 .dobbel {
     width: 100px;
     height: 100px;
@@ -83,4 +88,21 @@ a {
 
 .px2 {
     height: 35px;
+}
+
+.card-opacity {
+    background-color: rgba(255, 255, 255, 0.8)
+}
+
+table.table-bordered {
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+table.table-bordered>thead>tr>th {
+    border: 1px solid black;
+}
+
+table.table-bordered>tbody>tr>td {
+    border: 1px solid black;
 }

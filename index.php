@@ -31,20 +31,33 @@ session_start();
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once("functions.php");
+  require_once("functions.php");
   $aantalspelers = $_POST["aantalspelers"];
   $_SESSION["aantalspelers"] = $aantalspelers;
-  echo "Aantal spelers: ".$aantalspelers."<br/>";
+?>
 
-  echo "<form method=\"post\" action=\"startgame.php\"><div class=\"form-group\">";
+<div class="card mx-auto mt-3" style="width: 400px;">
+  <div class="card-header">
+    Aantal spelers: <?php echo $aantalspelers; ?><br/>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Geef namen in</h5>
+    <form method="post" action="startgame.php">
+    <div class="form-group">
+    <?php
+    for ($i=1;$i<=$aantalspelers;$i++) {
+        echo printInput($i);
+      }
+    ?>
+    <br />
+    <input type="submit" class="btn btn-primary" type="button" value="OK">
+    </div>
+    </form>
+  </div>
+</div>
 
-  for ($i=1;$i<=$aantalspelers;$i++) {
-    echo printInput($i);
-  }
 
-  echo "<input type=\"submit\" class=\"btn btn-primary\" type=\"button\" value=\"OK\">";
-  echo "</div></form>";
-
+<?php
 } else {
     // remove all session variables
     session_unset(); 
@@ -59,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="form-group">
                 <label for="aantalspelers" class="labelaantal">Aantal spelers</label>
-                <input type="number" min="1" max="4" id="aantal" class="form-control mb-5 inputaantal" name="aantalspelers" style="">
+                <input type="number" min="1" max="4" id="aantal" class="form-control mb-5 inputaantal" name="aantalspelers" style="height:100px;">
                 <input type="submit" class="btn btn-primary" type="button" value="OK">
             </div>
         </form>

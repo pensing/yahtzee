@@ -34,9 +34,9 @@ if (isset($_SESSION["running"])) {
 <body>
 
     <!-- Kop/header -->
-    <div class="container-fluid align-middle" style="text-align:center;background-color:transparent;height:100vh;">
+    <div class="container-fluid align-middle" style="text-align:center;background-color:transparent;">
 
-        <!--h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2-->
+        <h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2>
 
         <div class="container">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -52,22 +52,27 @@ if (isset($_SESSION["running"])) {
 
         <div class="row" style="margin-top: 20px;">
         <div class="col-sm">
-            <div class="card" style="width: 100%;">
+            <div class="card card-opacity" style="width: 100%;">
                 <div class="card-body"><?php echo printTable(1, $getSession); ?>
                 </div>
             </div>
         </div>
         <div class="col-sm">
-            <div class="card" style="width: 100%;">
-                <div class="card-body"><?php echo printTable2(1,$getSession); ?>
+            <div class="card card-opacity" style="width: 100%;">
+                <div class="card-body"><?php echo printTable2(1, $getSession); ?>
                 </div>
             </div>
         </div>
         </div>
 
         </div>
-        <input type="submit" value="Verwerk" style="margin-top: 200px;">
+        <input type="submit" value="Verwerk" class="btn btn-dark btn-lg mt-5">
         </form>
+
+        </div>
+
+        <div class="text-center pt-3">
+        <a href="dice.php" class=""><button type="button" class="btn btn-warning btn-lg">Dobbelen</button></a>
         </div>
     
     </div>

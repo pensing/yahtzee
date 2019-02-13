@@ -32,28 +32,15 @@ require_once("functions.php");
 
         <div class="container">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <div class="row">
+        <div class="row mx-auto px-auto text-center">
 
-
-
-        
         <?php
-            for ($i=1;$i<=$_SESSION["aantalspelers"];$i++) {
-            //echo 'speler '.$i.' = '.$_POST["speler".$i].'<br/>';
-            echo '
-            <div class="col-sm">
-            <div class="card" style="width: 100%;">
-  <div class="card-body">
-    <h5 class="card-title">'.
-    $_POST["speler".$i].'</h5>'. printTable($i) . '
-    <a href="#" class="card-link">Bereken deel 1</a>
-    <a href="#" class="card-link">Bereken deel 2</a>
-  </div>
-</div>
-            </div>';      
-
-            }
+        //echo 'aantal='.$_SESSION["aantalspelers"];
         ?>
+
+<a class="btn btn-primary btn-lg mr-3" href="dice.php" role="button">Dobbelen</a>
+<a class="btn btn-primary btn-lg ml-3" href="card.php" role="button">Kaart invullen</a>
+
         </div>
         </form>
         </div>

@@ -26,17 +26,14 @@ require_once("functions.php");
 <body>
 
     <!-- Kop/header -->
-    <div class="container-fluid align-middle" style="text-align:center;background-color:transparent;height:100vh;">
+    <div class="container-fluid align-middle" style="text-align:center;background-color:transparent;">
 
         <h2 class="display-2 text-white font-weight-bold pt-4" style="color:black !important;">YAHTZEE</h2>
 
         <div class="container">
-
-        </div>
-
-        <div class="container">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <div class="row" style="margin-top: 150px;">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="">
+        <div class="card card-opacity" style="margin-top: 20px;">
+        <div class="row">
 
 
         <?php
@@ -45,55 +42,58 @@ require_once("functions.php");
             if (!$_SESSION["eindebeurt"]) {
             $worp = $_SESSION["worp"];
 
-            $ds1 = rand(1,6);
-            $ds2 = rand(1,6);
-            $ds3 = rand(1,6);
-            $ds4 = rand(1,6);
-            $ds5 = rand(1,6);
+            for ($i=0; $i<=5; $i++) {
+                $dobbelstenen[$i] = rand(1,6);
+            }
 
-            echo "<div>Dit is worp ".$worp."</div>";
+            echo '<h3 id="status" class="text-center w-100">Dit is worp '.$worp.'</h3>';
             if ($worp < 3) {$worp += 1; $_SESSION["worp"] = $worp;
             } else {
-                echo "<div>Je hebt 3 keer gegooid!</div>";
+                echo '<h3 class="text-center w-100">Je hebt 3 keer gegooid!</h3>';
                 $eindebeurt = true;
                 $_SESSION["eindebeurt"] = $eindebeurt;
             }
 
-            } else {echo "<div>Je hebt al 3 keer gegooid!</div>";}
+            } else {echo '<h3 class="text-center w-100">Je hebt al 3 keer gegooid!</h3>';}
         ?>
-
-        <div style="width:100%; margin: 0 auto;">
-            <div class="dobbel"><?php echo printDobbel($ds1); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds2); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds3); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds4); ?></div>
-            <div class="dobbel"><?php echo printDobbel($ds5); ?></div>
-        </div>
 
         <?php
         } else {
+            //Eerste keer (Get-situatie)
+            for ($i=0; $i<=4; $i++) {
+                $dobbelstenen[$i] = 0;
+            }
             $worp = 1;
             $_SESSION["worp"] = $worp;
             $eindebeurt = false;
             $_SESSION["eindebeurt"] = $eindebeurt;
-            echo "<div>Doe je eerste worp</div>";
-        ?>
-
-        <div style="width:100%; margin: 0 auto;">
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-            <div class="dobbel"><?php echo printDobbel(0); ?></div>
-        </div>
-
-        <?php
+            echo '<h3 class="text-center w-100">Doe je eerste worp</h3>';
         }
         ?>
 
+        <div class="text-center mx-auto" style="margin: 0 auto;">
+        <?php
+        for ($i=0; $i<=4; $i++) {
+                echo '<div class="dobbelcontainer">' . printDobbel($dobbelstenen[$i]) . '</div>';
+            }
+        ?>
         </div>
-        <input type="submit" value="Roll the dice">
+
+        </div>
+
+        <div class="row text-center pt-3" style="width:100%;">
+        <input type="submit" value="Dobbelen" class="btn btn-danger btn-lg mx-auto mb-5">
+        </div>
+
+        </div>
         </form>
+        </div>
+
+        <div class="text-center pt-3">
+        <a href='dice.php'><button class="btn btn-dark btn-lg" type="button">Reset</button></a>
+        </div>
+        <div class="text-center pt-3">
+        <a href="card.php" class=""><button type="button" class="btn btn-warning btn-lg">Kaart invullen</button></a>
         </div>
     
     </div>
